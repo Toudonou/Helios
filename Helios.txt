@@ -1,0 +1,79 @@
+--------------------------------- Helios ---------------------------------
+
+	- Opengl (or Vulkan)
+	- Number of thraed = 2 : Main thread + Render thread
+
+	- Core
+		- Engine
+		- Window (ApplicationSpecifications)
+		- Logger
+		- FileManager
+		- RessourceManager (Runtime Resource Management)
+		- File Serialization
+		- Signal Emiter (Collision Shape, UI)
+		- Time, Clock
+
+	- Scripting System (Lua)
+
+	- Maths
+		- Vector2
+		- Vector3
+		- Vector4
+		- Matrix4
+		- Transform
+
+	- Inputs
+		- InputManager
+
+	- Renderer
+		- BatchRenderer
+		- TextureManager
+		- Layer ?????
+
+	- FontManager
+
+	- Scene Management
+		- SceneClass
+		- SceneStateMachine
+
+	- Node
+		- Camera2D
+
+		- Games Objects 
+			- Sprite2D
+			- AnimatedSprite2D
+			- Particules2D
+			- TileMap
+			- ParallaxLayer
+
+			- CollisionObject2D
+				- Area2D
+				- PhysicBody2D
+					- KinematicBody2D
+					- RigidBody2D
+					- StaticBody2D (floor, wall)
+
+		- Shape
+			- Rectangle2D
+			- Circle2D
+			- Triangle2D
+			- Polygone ?????????
+
+			- Physics 
+				- CollisionShape2D			
+				- RayCast2D
+
+		- Audio (SoLound, Irrklang, OpenAL)
+			- AudioStream
+			- LocalAudioStream
+
+		- Light
+			- Point light	
+			- Directional light
+			- Ambient light
+			- Spot light
+
+		- UI
+			- Button
+			- CheckBox
+			- ToogleButton
