@@ -23,7 +23,7 @@
 		- Transform
 
 	- Inputs
-		- InputManager
+		- Input
 
 	- Renderer
 		- BatchRenderer

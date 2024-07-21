@@ -1,0 +1,31 @@
+//
+// Created by Toudonou on 7/21/2024.
+//
+
+#ifndef DEFINES_H
+#define DEFINES_H
+
+// std libraries
+#include <iostream>
+#include <cstring>
+#include <cstdarg>
+#include <chrono>
+
+// thrid-party libraries
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+// Helios defines
+#define HELIOS_EXPORT
+#define HELIOS_LOG_MAX_BUFFER_SIZE (64 * 1024) // Logger buffer size
+// #define HELIOS_RELEASE
+
+#ifdef _WIN32
+#ifdef HELIOS_EXPORT
+#define HELIOS_API __declspec(dllexport)
+#else
+#define HELIOS_API __declspec(dllimport)
+#endif
+#endif
+
+#endif //DEFINES_H
