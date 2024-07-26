@@ -21,21 +21,30 @@ namespace helios {
     class HELIOS_API Logger {
     public:
         // Initializes the logger
-        static void Init();
+        static void Init(const std::string &logFile);
 
         // Logs a message with a given log level
         static void Log(LogLevel level, const std::string &message, ...);
 
-    private:
-        Logger() = default;
+        // Shuts down the logger
+        static void ShutDown();
 
-        ~Logger() = default;
+    private:
+        // To store temporary log messages
+        static std::ostringstream tempBuffer;
+
+        // Logger file
+        static std::ofstream s_loggingFile;
 
         // Converts a log level to a string
         static std::string LogLevelToString(LogLevel level);
 
         // Activates the color for a log level
         static std::string LogLevelColor(LogLevel level);
+
+        Logger() = default;
+
+        ~Logger() = default;
     };
 } // helios
 

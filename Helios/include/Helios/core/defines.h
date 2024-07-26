@@ -10,6 +10,7 @@
 #include <cstring>
 #include <cstdarg>
 #include <chrono>
+#include <fstream>
 
 // thrid-party libraries
 #include <glad/glad.h>

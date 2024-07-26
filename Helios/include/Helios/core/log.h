@@ -10,24 +10,22 @@
 
 #ifndef HELIOS_RELEASE
 
-// Define a macro to track the location of a log message
-#define HELIOS_LOCATION_TRACKER()          std::cout << " [" << get_filename_from_path(__FILE__) << ":" << __FUNCTION__ << ":" << __LINE__ << "]" << "\033[0m" << std::endl;
 
 // Define logging macros with different severity levels
 // Log an informational message about normal operation
-#define HELIOS_INFO(message, ...)          Logger::Log(LogLevel::INFO, message, ##__VA_ARGS__); HELIOS_LOCATION_TRACKER()
+#define HELIOS_INFO(message, ...)         Logger::Log(LogLevel::INFO, message + std::string(" [") + get_filename_from_path(__FILE__) + std::string(":") + __FUNCTION__ + std::string(":") + std::to_string(__LINE__) + std::string("]\n"), ##__VA_ARGS__); std::cout << "\033[0m";
 
 // Log detailed diagnostic information for development and debugging
-#define HELIOS_DEBUG(message, ...)         Logger::Log(LogLevel::DEBUG, message, ##__VA_ARGS__); HELIOS_LOCATION_TRACKER()
+#define HELIOS_DEBUG(message, ...)        Logger::Log(LogLevel::DEBUG, message + std::string(" [") + get_filename_from_path(__FILE__) + std::string(":") + __FUNCTION__ + std::string(":") + std::to_string(__LINE__) + std::string("]\n"), ##__VA_ARGS__); std::cout << "\033[0m";
 
 // Log warnings about potential issues or unusual situations
-#define HELIOS_WARN(message, ...)       Logger::Log(LogLevel::WARNING, message, ##__VA_ARGS__); HELIOS_LOCATION_TRACKER()
+#define HELIOS_WARN(message, ...)         Logger::Log(LogLevel::WARNING, message + std::string(" [") + get_filename_from_path(__FILE__) + std::string(":") + __FUNCTION__ + std::string(":") + std::to_string(__LINE__) + std::string("]\n"), ##__VA_ARGS__); std::cout << "\033[0m";
 
 // Log serious errors affecting functionality that need fixing
-#define HELIOS_ERROR(message, ...)         Logger::Log(LogLevel::ERROR, message, ##__VA_ARGS__); HELIOS_LOCATION_TRACKER()
+#define HELIOS_ERROR(message, ...)        Logger::Log(LogLevel::ERROR, message + std::string(" [") + get_filename_from_path(__FILE__) + std::string(":") + __FUNCTION__ + std::string(":") + std::to_string(__LINE__) + std::string("]\n"), ##__VA_ARGS__); std::cout << "\033[0m";
 
 // Log critical issues requiring immediate attention to avoid application failure
-#define HELIOS_CRITICAL(message, ...)      Logger::Log(LogLevel::CRITICAL, message, ##__VA_ARGS__);  std::cout << "\033[0m" << std::endl;
+#define HELIOS_CRITICAL(message, ...)     Logger::Log(LogLevel::CRITICAL, message, ##__VA_ARGS__);  std::cout << "\033[0m" << std::endl;
 
 // Define assertion macros
 namespace helios {

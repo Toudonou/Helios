@@ -3,10 +3,20 @@
 //
 
 #include "Helios/core/Logger.h"
+#include "Helios/core/log.h"
 
 namespace helios {
-    void Logger::Init() {
-        // TODO: Implement logger initialization (Add file logging)
+    std::ostringstream Logger::tempBuffer;
+    std::ofstream Logger::s_loggingFile;
+
+    void Logger::Init(const std::string &logFile) {
+        s_loggingFile.open(logFile, std::ios::out | std::ios::app);
+        if(s_loggingFile.is_open()) {
+            std::cout << "Logger initialized\n";
+        } else {
+            std::cerr << "Failed to initialize the logger\n";
+            HELIOS_BREAK;
+        }
     }
 
     void Logger::Log(const LogLevel level, const std::string &message, ...) {
@@ -26,10 +36,17 @@ namespace helios {
         vsnprintf(outMessage, HELIOS_LOG_MAX_BUFFER_SIZE, message.c_str(), args);
         va_end(args);
 
-        finalMessage << LogLevelColor(level) << "[" << std::put_time(&now_tm, "%Y-%m-%d %H:%M:%S") << "] "
+        finalMessage << "[" << std::put_time(&now_tm, "%Y-%m-%d %H:%M:%S") << "] "
                 << LogLevelToString(level) << " " << outMessage;
 
-        std::cout << finalMessage.str();
+        std::cout << LogLevelColor(level) << finalMessage.str(); // Print the message to the console
+        tempBuffer << finalMessage.str(); // Store the message in the temporary buffer
+    }
+
+    void Logger::ShutDown() {
+        s_loggingFile << tempBuffer.str();
+        s_loggingFile.close();
+        std::cout << "Logger shut down\n";
     }
 
     std::string Logger::LogLevelToString(const LogLevel level) {
