@@ -1,5 +1,5 @@
 //
-// Created by Toudonou on 7/21/2024.
+// Created by Toudonou on 21/07/2024.
 //
 
 #ifndef DEFINES_H
@@ -17,7 +17,7 @@
 
 // Helios defines
 #define HELIOS_EXPORT
-#define HELIOS_LOG_MAX_BUFFER_SIZE (64 * 1024) // Logger buffer size
+#define HELIOS_LOG_MAX_BUFFER_SIZE (64 * 1024) // Logger buffer size : 64kb
 // #define HELIOS_RELEASE
 
 #ifdef _WIN32
