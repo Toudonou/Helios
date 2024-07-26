@@ -82,8 +82,5 @@ namespace helios {
 #define HELIOS_CRITICAL(message, ...)
 #define HELIOS_ASSERT(expr)
 #define HELIOS_ASSERT_MSG(expr, message)
-
 #endif
-
-
 #endif //LOG_H

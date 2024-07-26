@@ -10,7 +10,7 @@
 		- FileManager
 		- RessourceManager (Runtime Resource Management)
 		- File Serialization
-		- Signal Emiter (Collision Shape, UI)
+		- Event System Signal Emiter (Collision Shape, UI)
 		- Time, Clock
 
 	- Scripting System (Lua)
