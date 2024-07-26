@@ -1,5 +1,5 @@
 //
-// Created by Toudonou on 7/21/2024.
+// Created by Toudonou on 21/07/2024.
 //
 
 #ifndef LOG_H
@@ -21,7 +21,7 @@
 #define HELIOS_DEBUG(message, ...)         Logger::Log(LogLevel::DEBUG, message, ##__VA_ARGS__); HELIOS_LOCATION_TRACKER()
 
 // Log warnings about potential issues or unusual situations
-#define HELIOS_WARNING(message, ...)       Logger::Log(LogLevel::WARNING, message, ##__VA_ARGS__); HELIOS_LOCATION_TRACKER()
+#define HELIOS_WARN(message, ...)       Logger::Log(LogLevel::WARNING, message, ##__VA_ARGS__); HELIOS_LOCATION_TRACKER()
 
 // Log serious errors affecting functionality that need fixing
 #define HELIOS_ERROR(message, ...)         Logger::Log(LogLevel::ERROR, message, ##__VA_ARGS__); HELIOS_LOCATION_TRACKER()
@@ -77,7 +77,7 @@ namespace helios {
 #else
 #define HELIOS_INFO(message, ...)
 #define HELIOS_DEBUG(message, ...)
-#define HELIOS_WARNING(message, ...)
+#define HELIOS_WARN(message, ...)
 #define HELIOS_ERROR(message, ...)
 #define HELIOS_CRITICAL(message, ...)
 #define HELIOS_ASSERT(expr)
