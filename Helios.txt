@@ -4,9 +4,9 @@
 	- Number of thraed = 2 : Main thread + Render thread
 
 	- Core
-		- Engine
-		- Window (ApplicationSpecifications)
-		- Logger
+		- Engine											Building
+		- Window (ApplicationSpecifications)				OK
+		- Logger											OK
 		- FileManager
 		- RessourceManager (Runtime Resource Management)
 		- File Serialization
@@ -22,7 +22,7 @@
 		- Matrix4
 		- Transform
 
-	- Inputs
+	- Inputs												Building
 		- Input
 
 	- Renderer

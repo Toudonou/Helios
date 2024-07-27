@@ -27,7 +27,7 @@ namespace helios {
         // Call each frame
         void Update() const;
 
-        // To uninitialize the window
+        // To shutdown the window
         void ShutDown();
 
         // To check if the window is closed

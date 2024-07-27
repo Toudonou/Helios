@@ -9,18 +9,21 @@ include_directories(third-party/include)
 link_directories(third-party/lib)
 
 # Include the engine libraries
-include_directories(include/)
+include_directories(Helios/include/)
 
 add_executable(${PROJECT_NAME}
         third-party/src/glad.c
-        src/Helios/core/Engine.cpp
-        include/Helios/core/Engine.h
-        src/Helios/core/Logger.cpp
-        include/Helios/core/Logger.h
-        include/Helios/core/defines.h
-        include/Helios/core/log.h
-        include/Helios/core/assert.h
         main.cpp
+        Helios/include/Helios/core/defines.h
+        Helios/include/Helios/core/log.h
+        Helios/src/Helios/core/Engine.cpp
+        Helios/include/Helios/core/Engine.h
+        Helios/src/Helios/core/Logger.cpp
+        Helios/include/Helios/core/Logger.h
+        Helios/src/Helios/core/Window.cpp
+        Helios/include/Helios/core/Window.h
+        Helios/src/Helios/input/Input.cpp
+        Helios/include/Helios/input/Input.h
 )
 
 target_link_libraries(${PROJECT_NAME} glfw3 opengl32)

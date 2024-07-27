@@ -72,6 +72,11 @@ namespace helios {
 
         glfwDestroyWindow(m_window);
         m_init = false;
+
+        // Deleting the instance
+        delete s_instance;
+        s_instance = nullptr;
+
         HELIOS_INFO("Window shutdown successfully");
     }
 } // helios
