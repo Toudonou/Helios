@@ -11,6 +11,7 @@
 #include <cstdarg>
 #include <chrono>
 #include <fstream>
+#include <cmath>
 
 // thrid-party libraries
 #include <glad/glad.h>
@@ -23,7 +24,15 @@
 #define HELIOS_MAX_KEYS             1024
 #define HELIOS_MAX_MOUSE_BUTTONS    32
 
+// Helios types
 typedef float real;
+
+namespace helios {
+    inline real toRadian(const real degree) {
+        constexpr real pi_over_180 = M_PI / 180; // For optimization
+        return degree * pi_over_180;
+    }
+}
 
 #ifdef _WIN32
 #ifdef HELIOS_EXPORT

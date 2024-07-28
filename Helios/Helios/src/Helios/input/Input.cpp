@@ -70,6 +70,6 @@ namespace helios {
         memset(m_lastFrameMouseButtonKeys, false, HELIOS_MAX_MOUSE_BUTTONS);
 
         m_init = false;
-        HELIOS_INFO("Shutting down the input system");
+        HELIOS_INFO("Input system shutdown successfully");
     }
 } // helios

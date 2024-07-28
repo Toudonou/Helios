@@ -69,9 +69,11 @@ namespace helios {
     std::string Logger::LogLevelColor(const LogLevel level) {
         switch (level) {
             case LogLevel::DEBUG:
-                return "\033[0;34m"; // Blue
-            case LogLevel::INFO:
                 return "\033[0;32m"; // Green
+                // return "\033[0;34m"; // Blue
+            case LogLevel::INFO:
+                return "\033[0m"; // Reset
+                // return "\033[0;32m"; // Green
             case LogLevel::WARNING:
                 return "\033[0;33m"; // Yellow
             case LogLevel::ERROR:
