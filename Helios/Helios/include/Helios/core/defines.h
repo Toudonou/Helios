@@ -18,8 +18,12 @@
 
 // Helios defines
 #define HELIOS_EXPORT
-#define HELIOS_LOG_MAX_BUFFER_SIZE (64 * 1024) // Logger buffer size : 64kb
 // #define HELIOS_RELEASE
+#define HELIOS_LOG_MAX_BUFFER_SIZE (64 * 1024) // Logger buffer size : 64kb
+#define HELIOS_MAX_KEYS             1024
+#define HELIOS_MAX_MOUSE_BUTTONS    32
+
+typedef float real;
 
 #ifdef _WIN32
 #ifdef HELIOS_EXPORT

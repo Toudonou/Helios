@@ -14,8 +14,8 @@ namespace helios {
         if(s_loggingFile.is_open()) {
             std::cout << "Logger initialized\n";
         } else {
-            std::cerr << "Failed to initialize the logger\n";
-            HELIOS_BREAK;
+            std::cout << "Failed to initialize the logger\n";
+           exit(EXIT_FAILURE);
         }
     }
 

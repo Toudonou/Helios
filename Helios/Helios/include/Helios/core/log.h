@@ -62,15 +62,15 @@ namespace helios {
 }
 
 #if _WIN32
-#define HELIOS_BREAK __debugbreak();
+#define HELIOS_BREAK() Logger::ShutDown(); __debugbreak();
 #elif __APPLE__
 #define HELIOS_BREAK __builtin_debugtrap();
 #else
 #define  HELIOS_BREAK __builtin_trap();
 #endif
 
-#define HELIOS_ASSERT(expr) if(expr) {} else { report_assertion_failure(#expr, "", __FILE__, __LINE__, __FUNCTION__); HELIOS_BREAK}
-#define HELIOS_ASSERT_MSG(expr, message) if(expr) {} else { report_assertion_failure(#expr, message, __FILE__, __LINE__, __FUNCTION__); HELIOS_BREAK}
+#define HELIOS_ASSERT(expr) if(expr) {} else { report_assertion_failure(#expr, "", __FILE__, __LINE__, __FUNCTION__); HELIOS_BREAK()}
+#define HELIOS_ASSERT_MSG(expr, message) if(expr) {} else { report_assertion_failure(#expr, message, __FILE__, __LINE__, __FUNCTION__); HELIOS_BREAK()}
 
 #else
 #define HELIOS_INFO(message, ...)
