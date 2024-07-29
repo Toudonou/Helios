@@ -11,6 +11,14 @@ namespace helios {
     struct Vector2 {
         real x, y;
 
+        // Constants
+        static const Vector2 ZERO;
+        static const Vector2 ONE;
+        static const Vector2 UP;
+        static const Vector2 DOWN;
+        static const Vector2 RIGHT;
+        static const Vector2 LEFT;
+
         // Vector2 with x = y = 0
         Vector2();
 
