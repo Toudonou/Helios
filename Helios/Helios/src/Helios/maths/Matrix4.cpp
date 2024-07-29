@@ -60,7 +60,8 @@ namespace helios {
         return Matrix4(1);
     }
 
-    Matrix4 Matrix4::Orthographic(real left, real right, real bottom, real top, real near, real far) {
+    Matrix4 Matrix4::Orthographic(const real left, const real right, const real bottom, const real top, const real near,
+                                  const real far) {
         auto result = Identity();
 
         result(0, 0) = 2 / (right - left);
@@ -93,8 +94,8 @@ namespace helios {
 
     Matrix4 Matrix4::Transpose() {
         auto result = Matrix4();
-        for (int i = 0; i < 4; ++i) {
-            for (int j = 0; j < 4; ++j) {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 result(i, j) = (*this)(j, i);
             }
         }
