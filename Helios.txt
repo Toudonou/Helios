@@ -8,14 +8,14 @@
 		- Window (ApplicationSpecifications)				OK
 		- Logger											OK
 		- FileManager
-		- RessourceManager (Runtime Resource Management)
+		- RessourceManager (Runtime Resource Management)	OK
 		- File Serialization
 		- Event System Signal Emiter (Collision Shape, UI)
 		- Time, Clock
 
 	- Scripting System (Lua)
 
-	- Maths													Building
+	- Maths													OK
 		- Vector2											OK
 		- Vector3											OK
 		- Vector4											OK

@@ -22,44 +22,44 @@ namespace helios {
 
         // Return true if the key is just pressed
         [[nodiscard]] static bool IsKeyPressed(const unsigned int keycode) {
-            return m_frameKeys[keycode] && !m_lastFrameKeys[keycode];
+            return s_frameKeys[keycode] && !s_lastFrameKeys[keycode];
         }
 
         // Return true if the key is just released
         [[nodiscard]] static bool IsKeyReleased(const unsigned int keycode) {
-            return !m_frameKeys[keycode] && m_lastFrameKeys[keycode];
+            return !s_frameKeys[keycode] && s_lastFrameKeys[keycode];
         }
 
         // Return true if the key is held down
-        [[nodiscard]] static bool IsKeyDown(const unsigned int keycode) { return m_frameKeys[keycode]; }
+        [[nodiscard]] static bool IsKeyDown(const unsigned int keycode) { return s_frameKeys[keycode]; }
 
         // Return true if the mouse button is just pressed
         [[nodiscard]] static bool IsMouseButtonPressed(const unsigned int button) {
-            return m_frameMouseButtonKeys[button] && !m_lastFrameMouseButtonKeys[button];
+            return s_frameMouseButtonKeys[button] && !s_lastFrameMouseButtonKeys[button];
         }
 
         // Return true if the mouse button is released
         [[nodiscard]] static bool IsMouseButtonReleased(const unsigned int button) {
-            return !m_frameMouseButtonKeys[button] && m_lastFrameMouseButtonKeys[button];
+            return !s_frameMouseButtonKeys[button] && s_lastFrameMouseButtonKeys[button];
         }
 
         // Return true if the mouse button is held down
         [[nodiscard]] static bool IsMouseButtonDown(const unsigned int button) {
-            return m_frameMouseButtonKeys[button];
+            return s_frameMouseButtonKeys[button];
         }
 
     private:
-        static bool m_init;
+        static bool s_init;
 
-        static bool m_frameKeys[HELIOS_MAX_KEYS];
+        static bool s_frameKeys[HELIOS_MAX_KEYS];
 
-        static bool m_lastFrameKeys[HELIOS_MAX_KEYS];
+        static bool s_lastFrameKeys[HELIOS_MAX_KEYS];
 
-        static bool m_frameMouseButtonKeys[HELIOS_MAX_MOUSE_BUTTONS];
+        static bool s_frameMouseButtonKeys[HELIOS_MAX_MOUSE_BUTTONS];
 
-        static bool m_lastFrameMouseButtonKeys[HELIOS_MAX_MOUSE_BUTTONS];
+        static bool s_lastFrameMouseButtonKeys[HELIOS_MAX_MOUSE_BUTTONS];
 
-        static real m_mouseX, m_mouseY;
+        static real s_mouseX, s_mouseY;
 
         Input() = default;
 
