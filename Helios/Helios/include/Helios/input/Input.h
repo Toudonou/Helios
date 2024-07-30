@@ -9,7 +9,7 @@
 #include "Helios/core/Window.h"
 
 namespace helios {
-    class Input {
+    class HELIOS_API Input {
     public:
         // Initialize the input system
         static void Init(const Window &window);
@@ -59,7 +59,7 @@ namespace helios {
 
         static bool s_lastFrameMouseButtonKeys[HELIOS_MAX_MOUSE_BUTTONS];
 
-        static real s_mouseX, s_mouseY;
+        static real_t s_mouseX, s_mouseY;
 
         Input() = default;
 

@@ -7,19 +7,19 @@
 
 namespace helios {
     Matrix4::Matrix4() {
-        memset(elements, 0, 4 * 4 * sizeof(real));
+        memset(elements, 0, 4 * 4 * sizeof(real_t));
     }
 
-    Matrix4::Matrix4(const real diagonal) {
-        memset(elements, 0, 4 * 4 * sizeof(real));
+    Matrix4::Matrix4(const real_t diagonal) {
+        memset(elements, 0, 4 * 4 * sizeof(real_t));
         elements[0 + 4 * 0] = diagonal;
         elements[1 + 4 * 1] = diagonal;
         elements[2 + 4 * 2] = diagonal;
         elements[3 + 4 * 3] = diagonal;
     }
 
-    Matrix4::Matrix4(real elements[16]) {
-        memset(elements, 0, 4 * 4 * sizeof(real));
+    Matrix4::Matrix4(real_t elements[16]) {
+        memset(elements, 0, 4 * 4 * sizeof(real_t));
         for (int i = 0; i < 16; i++) {
             this->elements[i] = elements[i];
         }
@@ -48,11 +48,11 @@ namespace helios {
     }
 
     Matrix4::Matrix4(const Matrix4 &other) {
-        memcpy(elements, other.elements, 4 * 4 * sizeof(real));
+        memcpy(elements, other.elements, 4 * 4 * sizeof(real_t));
     }
 
     Matrix4 &Matrix4::operator=(const Matrix4 &other) {
-        memcpy(elements, other.elements, 4 * 4 * sizeof(real));
+        memcpy(elements, other.elements, 4 * 4 * sizeof(real_t));
         return *this;
     }
 
@@ -60,8 +60,8 @@ namespace helios {
         return Matrix4(1);
     }
 
-    Matrix4 Matrix4::Orthographic(const real left, const real right, const real bottom, const real top, const real near,
-                                  const real far) {
+    Matrix4 Matrix4::Orthographic(const real_t left, const real_t right, const real_t bottom, const real_t top, const real_t near,
+                                  const real_t far) {
         auto result = Identity();
 
         result(0, 0) = 2 / (right - left);
@@ -75,13 +75,13 @@ namespace helios {
         return result;
     }
 
-    Matrix4 Matrix4::Perspective(const real fov, const real aspectRatio, const real near, const real far) {
+    Matrix4 Matrix4::Perspective(const real_t fov, const real_t aspectRatio, const real_t near, const real_t far) {
         auto result = Identity();
 
-        const real q = 1.0f / tan(toRadian(0.5f * fov));
-        const real a = q / aspectRatio;
-        const real b = (near + far) / (near - far);
-        const real c = 2 * near * far / (near - far);
+        const real_t q = 1.0f / tan(toRadian(0.5f * fov));
+        const real_t a = q / aspectRatio;
+        const real_t b = (near + far) / (near - far);
+        const real_t c = 2 * near * far / (near - far);
 
         result(0, 0) = a;
         result(1, 1) = q;
@@ -102,13 +102,13 @@ namespace helios {
         return result;
     }
 
-    real &Matrix4::operator()(const int i, int j) {
+    real_t &Matrix4::operator()(const int i, int j) {
         HELIOS_ASSERT_MSG(i >= 0 && i < 4, " i is out of bounds");
         HELIOS_ASSERT_MSG(j >= 0 && j < 4, " j is out of bounds");
         return elements[i + 4 * j];
     }
 
-    const real &Matrix4::operator()(const int i, int j) const {
+    const real_t &Matrix4::operator()(const int i, int j) const {
         HELIOS_ASSERT_MSG(i >= 0 && i < 4, " i is out of bounds");
         HELIOS_ASSERT_MSG(j >= 0 && j < 4, " j is out of bounds");
         return elements[i + 4 * j];
@@ -178,7 +178,7 @@ namespace helios {
         }
     }
 
-    Matrix4 Matrix4::operator*(const real scalar) const {
+    Matrix4 Matrix4::operator*(const real_t scalar) const {
         auto result = Matrix4();
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
@@ -188,7 +188,7 @@ namespace helios {
         return result;
     }
 
-    void Matrix4::operator*=(const real scalar) {
+    void Matrix4::operator*=(const real_t scalar) {
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
                 (*this)(i, j) *= scalar;
@@ -207,7 +207,7 @@ namespace helios {
         return result;
     }
 
-    Matrix4 operator*(const real scalar, const Matrix4 &other) {
+    Matrix4 operator*(const real_t scalar, const Matrix4 &other) {
         return other * scalar;
     }
 } // helios

@@ -10,16 +10,16 @@ namespace helios {
     Vector4::Vector4() : x(0), y(0), z(0), w(0) {
     }
 
-    Vector4::Vector4(const real value) : x(value), y(value), z(value), w(value) {
+    Vector4::Vector4(const real_t value) : x(value), y(value), z(value), w(value) {
     }
 
-    Vector4::Vector4(const real _x, const real _y, const real _z, const real _w) : x(_x), y(_y), z(_z), w(_w) {
+    Vector4::Vector4(const real_t _x, const real_t _y, const real_t _z, const real_t _w) : x(_x), y(_y), z(_z), w(_w) {
     }
 
-    Vector4::Vector4(const Vector2 &other, const real _z, const real _w) : x(other.x), y(other.y), z(_z), w(_w) {
+    Vector4::Vector4(const Vector2 &other, const real_t _z, const real_t _w) : x(other.x), y(other.y), z(_z), w(_w) {
     }
 
-    Vector4::Vector4(const Vector3 &other, const real _w) : x(other.x), y(other.y), z(other.z), w(_w) {
+    Vector4::Vector4(const Vector3 &other, const real_t _w) : x(other.x), y(other.y), z(other.z), w(_w) {
     }
 
     Vector4::Vector4(const Vector4 &other) {
@@ -29,11 +29,11 @@ namespace helios {
         this->w = other.w;
     }
 
-    real Vector4::length() const {
+    real_t Vector4::length() const {
         return std::sqrt(squareLength());
     }
 
-    real Vector4::squareLength() const {
+    real_t Vector4::squareLength() const {
         return x * x + y * y + z * z + w * w;
     }
 
@@ -55,23 +55,23 @@ namespace helios {
     }
 
     // Scalar product
-    Vector4 Vector4::operator*(const real scalar) const {
+    Vector4 Vector4::operator*(const real_t scalar) const {
         return {x * scalar, y * scalar, z * scalar, w * scalar};
     }
 
     // Scalar product 1 * Vector4
-    Vector4 operator*(const real scalar, const Vector4 &other) {
+    Vector4 operator*(const real_t scalar, const Vector4 &other) {
         return other * scalar;
     }
 
     // Scalar product
-    void Vector4::operator*=(const real scalar) {
+    void Vector4::operator*=(const real_t scalar) {
         x *= scalar;
         y *= scalar;
     }
 
     // Dot product
-    real Vector4::operator*(const Vector4 &other) const {
+    real_t Vector4::operator*(const Vector4 &other) const {
         return x * other.x + y * other.y;
     }
 

@@ -8,7 +8,7 @@
 #include "Helios/maths/Matrix4.h"
 
 namespace helios {
-    struct Transform2D {
+    struct HELIOS_API Transform2D {
         // To store the position of the object
         Vector2 position;
 
@@ -16,7 +16,7 @@ namespace helios {
         Vector2 scale;
 
         // To store the rotation of the object in degrees aroud the z-axis
-        real rotation;
+        real_t rotation;
 
         Transform2D();
 
@@ -26,7 +26,7 @@ namespace helios {
 
         static Matrix4 Scale(const Vector2 &vector);
 
-        static Matrix4 Rotate(real angle);
+        static Matrix4 Rotate(real_t angle);
     };
 } // helios
 

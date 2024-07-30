@@ -9,20 +9,20 @@
 #include "Helios/maths/Vector2.h"
 
 namespace helios {
-    struct Vector3 {
-        real x, y, z;
+    struct HELIOS_API Vector3 {
+        real_t x, y, z;
 
         // Vector3 with x = y = z = 0
         Vector3();
 
         // Vector3 with x = y = z = value
-        explicit Vector3(real value);
+        explicit Vector3(real_t value);
 
         // Vector3 with x = _x, y = _y, z = _z
-        Vector3(real _x, real _y, real _z);
+        Vector3(real_t _x, real_t _y, real_t _z);
 
         // Vector3 with x = other.x, y = other.y, z = _z
-        Vector3(const Vector2 &other, real _z);
+        Vector3(const Vector2 &other, real_t _z);
 
         // Copy constructor
         Vector3(const Vector3 &other);
@@ -33,10 +33,10 @@ namespace helios {
         ~Vector3() = default;
 
         // Length of the Vector3
-        [[nodiscard]] real length() const;
+        [[nodiscard]] real_t length() const;
 
         // Square length of the Vector3
-        [[nodiscard]] real squareLength() const;
+        [[nodiscard]] real_t squareLength() const;
 
         // Normalized Vector3
         [[nodiscard]] Vector3 normalized() const;
@@ -49,11 +49,11 @@ namespace helios {
 
         void operator-=(const Vector3 &other);
 
-        Vector3 operator*(real scalar) const; // Scalar product
+        Vector3 operator*(real_t scalar) const; // Scalar product
 
-        void operator*=(real scalar); // Scalar product
+        void operator*=(real_t scalar); // Scalar product
 
-        real operator*(const Vector3 &other) const; // Dot product
+        real_t operator*(const Vector3 &other) const; // Dot product
 
         Vector3 operator^(const Vector3 &other) const; // Cross product
 
@@ -70,7 +70,7 @@ namespace helios {
     };
 
     // Scalar product 1 * Vector3
-    Vector3 operator*(real scalar, const Vector3 &other);
+    Vector3 operator*(real_t scalar, const Vector3 &other);
 } // helios
 
 #endif // VECTOR3_H

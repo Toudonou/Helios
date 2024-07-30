@@ -10,7 +10,6 @@
 
 #ifndef HELIOS_RELEASE
 
-
 // Define logging macros with different severity levels
 // Log an informational message about normal operation
 #define HELIOS_INFO(message, ...)         Logger::Log(LogLevel::INFO, message + std::string(" [") + get_filename_from_path(__FILE__) + std::string(":") + __FUNCTION__ + std::string(":") + std::to_string(__LINE__) + std::string("]\n"), ##__VA_ARGS__); std::cout << "\033[0m";
@@ -29,7 +28,7 @@
 
 // Define assertion macros
 namespace helios {
-    inline std::string get_filename_from_path(const std::string &fullPath) {
+    HELIOS_API inline std::string get_filename_from_path(const std::string &fullPath) {
         // Find the last occurrence of the path separator
 #if defined(_WIN32)
         std::string::size_type pos = fullPath.find_last_of("\\/");
@@ -47,7 +46,7 @@ namespace helios {
     }
 
     // Report an assertion failure
-    inline void report_assertion_failure(const char *expression, const std::string &message, const char *file,
+    HELIOS_API inline void report_assertion_failure(const char *expression, const std::string &message, const char *file,
                                          const int line,
                                          const char *function) {
         if (message.empty()) {

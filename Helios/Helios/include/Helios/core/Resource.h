@@ -9,7 +9,7 @@
 
 namespace helios {
     // Base class for all ressources
-    class Resource {
+    class HELIOS_API Resource {
     public:
         Resource() = default;
 

@@ -9,13 +9,13 @@ namespace helios {
     Vector3::Vector3() : x(0), y(0), z(0) {
     }
 
-    Vector3::Vector3(const real _x, const real _y, const real _z) : x(_x), y(_y), z(_z) {
+    Vector3::Vector3(const real_t _x, const real_t _y, const real_t _z) : x(_x), y(_y), z(_z) {
     }
 
-    Vector3::Vector3(const real value) : x(value), y(value), z(value) {
+    Vector3::Vector3(const real_t value) : x(value), y(value), z(value) {
     }
 
-    Vector3::Vector3(const Vector2 &other, const real _z) : x(other.x), y(other.y), z(_z) {
+    Vector3::Vector3(const Vector2 &other, const real_t _z) : x(other.x), y(other.y), z(_z) {
     }
 
     Vector3::Vector3(const Vector3 &other) {
@@ -24,11 +24,11 @@ namespace helios {
         this->z = other.z;
     }
 
-    real Vector3::length() const {
+    real_t Vector3::length() const {
         return std::sqrt(squareLength());
     }
 
-    real Vector3::squareLength() const {
+    real_t Vector3::squareLength() const {
         return x * x + y * y + z * z;
     }
 
@@ -50,23 +50,23 @@ namespace helios {
     }
 
     // Scalar product
-    Vector3 Vector3::operator*(const real scalar) const {
+    Vector3 Vector3::operator*(const real_t scalar) const {
         return {x * scalar, y * scalar, z * scalar};
     }
 
     // Scalar product 1 * Vector3
-    Vector3 operator*(const real scalar, const Vector3 &other) {
+    Vector3 operator*(const real_t scalar, const Vector3 &other) {
         return other * scalar;
     }
 
     // Scalar product
-    void Vector3::operator*=(const real scalar) {
+    void Vector3::operator*=(const real_t scalar) {
         x *= scalar;
         y *= scalar;
     }
 
     // Dot product
-    real Vector3::operator*(const Vector3 &other) const {
+    real_t Vector3::operator*(const Vector3 &other) const {
         return x * other.x + y * other.y + z * other.z;
     }
 

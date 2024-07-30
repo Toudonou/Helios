@@ -12,8 +12,8 @@ namespace helios {
     bool Input::s_lastFrameKeys[HELIOS_MAX_KEYS];
     bool Input::s_frameMouseButtonKeys[HELIOS_MAX_MOUSE_BUTTONS];
     bool Input::s_lastFrameMouseButtonKeys[HELIOS_MAX_MOUSE_BUTTONS];
-    real Input::s_mouseX;
-    real Input::s_mouseY;
+    real_t Input::s_mouseX;
+    real_t Input::s_mouseY;
 
     // Callbacks functions
     void key_callback(GLFWwindow *window, const int key, int scancode, const int action, int mods) {

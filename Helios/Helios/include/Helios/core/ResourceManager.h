@@ -9,7 +9,7 @@
 #include "Helios/core/Resource.h"
 
 namespace helios {
-    class ResourceManager {
+    class  HELIOS_API ResourceManager {
     public:
         // Initialize the resource manager
         static void Init();
@@ -19,11 +19,11 @@ namespace helios {
 
         // Load a resource from a file
         template<typename T>
-        static std::shared_ptr<T> GetRessource(const std::string &path) {
+        static std::shared_ptr<T> GetResource(const std::string &path) {
             // Will return the first resource that has the same path
             auto iterator = std::find_if(s_resources.begin(), s_resources.end(),
-                                         [&path](const std::shared_ptr<Resource> &ressource) {
-                                             return ressource->GetPath() == path;
+                                         [&path](const std::shared_ptr<Resource> &resource) {
+                                             return resource->GetPath() == path;
                                          });
 
             // If the resource is found
@@ -33,7 +33,7 @@ namespace helios {
             }
 
             // If the resource is not found
-            auto resource = std::make_shared<T>();
+            auto resource = std::make_shared<Resource>();
             resource->LoadFromFile(path);
             s_resources.push_back(resource);
             return resource;
