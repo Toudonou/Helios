@@ -12,7 +12,7 @@ namespace helios {
     class HELIOS_API Input {
     public:
         // Initialize the input system
-        static void Init(const Window &window);
+        static void Init(Window &window);
 
         // Update the input system
         static void Update();
@@ -48,8 +48,16 @@ namespace helios {
             return s_frameMouseButtonKeys[button];
         }
 
+        // Return the mouse x-position
+        [[nodiscard]] static real_t GetMouseX() { return s_mouseX; }
+
+        // Return the mouse y-position
+        [[nodiscard]] static real_t GetMouseY() { return s_mouseY; }
+
     private:
         static bool s_init;
+
+        static Window *s_window;
 
         static bool s_frameKeys[HELIOS_MAX_KEYS];
 
