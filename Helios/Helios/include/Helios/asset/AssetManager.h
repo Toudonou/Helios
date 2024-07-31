@@ -2,14 +2,14 @@
 // Created by Toudonou on 30/07/2024.
 //
 
-#ifndef  RESOURCEMANAGER_H
-#define  RESOURCEMANAGER_H
+#ifndef  ASSETMANAGER_H
+#define  ASSETMANAGER_H
 
 #include "Helios/core/defines.h"
-#include "Helios/core/Resource.h"
+#include "Helios/asset/Asset.h"
 
 namespace helios {
-    class  HELIOS_API ResourceManager {
+    class HELIOS_API AssetManager {
     public:
         // Initialize the resource manager
         static void Init();
@@ -19,23 +19,23 @@ namespace helios {
 
         // Load a resource from a file
         template<typename T>
-        static std::shared_ptr<T> GetResource(const std::string &path) {
+        static std::shared_ptr<T> GetAsset(const std::string &path) {
             // Will return the first resource that has the same path
-            auto iterator = std::find_if(s_resources.begin(), s_resources.end(),
-                                         [&path](const std::shared_ptr<Resource> &resource) {
+            auto iterator = std::find_if(s_assets.begin(), s_assets.end(),
+                                         [&path](const std::shared_ptr<Asset> &resource) {
                                              return resource->GetPath() == path;
                                          });
 
             // If the resource is found
-            if (iterator != s_resources.end()) {
+            if (iterator != s_assets.end()) {
                 // Return the derivative of the ressource : the real resource
                 return std::dynamic_pointer_cast<T>(*iterator);
             }
 
             // If the resource is not found
-            auto resource = std::make_shared<Resource>();
+            auto resource = std::make_shared<Asset>();
             resource->LoadFromFile(path);
-            s_resources.push_back(resource);
+            s_assets.push_back(resource);
             return resource;
         }
 
@@ -44,8 +44,12 @@ namespace helios {
         static bool s_init;
 
         // To store all the ressources
-        static std::vector<std::shared_ptr<Resource> > s_resources;
+        static std::vector<std::shared_ptr<Asset> > s_assets;
+
+        AssetManager() = default;
+
+        ~AssetManager() = default;
     };
 } // helios
 
-#endif // RESOURCEMANAGER_H
+#endif // ASSETMANAGER_H

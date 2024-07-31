@@ -2,18 +2,18 @@
 // Created by Toudonou on 30/07/2024.
 //
 
-#ifndef RESOURCE_H
-#define RESOURCE_H
+#ifndef ASSET_H
+#define ASSET_H
 
 #include "Helios/core/defines.h"
 
 namespace helios {
     // Base class for all ressources
-    class HELIOS_API Resource {
+    class HELIOS_API Asset {
     public:
-        Resource() = default;
+        Asset() = default;
 
-        virtual ~Resource() = default;
+        virtual ~Asset() = default;
 
         // Load ressource from a file
         virtual void LoadFromFile(const std::string &path) = 0;
@@ -23,4 +23,4 @@ namespace helios {
     };
 }
 
-#endif // RESOURCE_H
+#endif // ASSET_H
