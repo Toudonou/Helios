@@ -18,7 +18,7 @@ namespace helios {
         static void Update();
 
         // Shutdown the input system
-        static void ShutDown();
+        static void Shutdown();
 
         // Return true if the key is just pressed
         [[nodiscard]] static bool IsKeyPressed(const unsigned int keycode) {

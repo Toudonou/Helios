@@ -26,8 +26,8 @@ namespace helios {
         // Logs a message with a given log level
         static void Log(LogLevel level, const std::string &message, ...);
 
-        // Shuts down the logger
-        static void ShutDown();
+        // Shutdown the logger
+        static void Shutdown();
 
     private:
         // To store temporary log messages

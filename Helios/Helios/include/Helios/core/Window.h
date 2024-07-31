@@ -28,7 +28,7 @@ namespace helios {
         void Update() const;
 
         // To shutdown the window
-        void ShutDown();
+        void Shutdown();
 
         // To check if the window is closed
         [[nodiscard]] bool IsClosed() const { return glfwWindowShouldClose(m_window); }

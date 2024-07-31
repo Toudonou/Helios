@@ -11,9 +11,9 @@ namespace helios {
         rotation = 0;
     }
 
-    Transform2D::Transform2D(const Vector2 &position, const Vector2 &scale, real_t rotation) : position(position),
-        scale(scale),
-        rotation(rotation) {
+    Transform2D::Transform2D(const Vector2 &position, const Vector2 &scale, const real_t rotation) : position(position),
+                                                                                                     scale(scale),
+                                                                                                     rotation(rotation) {
     }
 
     Matrix4 Transform2D::GetTransformMatrix() const {
@@ -44,7 +44,6 @@ namespace helios {
         const real_t r = toRadian(angle);
         const real_t s = sinf(r);
         const real_t c = cosf(r);
-        const real_t omc = 1 - c;
 
         result(0, 0) = c;
         result(0, 1) = -s;

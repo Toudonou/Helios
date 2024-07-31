@@ -9,7 +9,7 @@
 #include "Helios/asset/Asset.h"
 
 namespace helios {
-    class HELIOS_API AssetManager {
+    class HELIOS_API AssetsManager {
     public:
         // Initialize the resource manager
         static void Init();
@@ -39,6 +39,8 @@ namespace helios {
             return resource;
         }
 
+        // TODO : Add a function to release a resource
+
     private:
         // To check if the resource manager is initialized : maybe not necessary
         static bool s_init;
@@ -46,9 +48,9 @@ namespace helios {
         // To store all the ressources
         static std::vector<std::shared_ptr<Asset> > s_assets;
 
-        AssetManager() = default;
+        AssetsManager() = default;
 
-        ~AssetManager() = default;
+        ~AssetsManager() = default;
     };
 } // helios
 

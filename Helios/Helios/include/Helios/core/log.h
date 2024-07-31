@@ -61,7 +61,7 @@ namespace helios {
 }
 
 #if _WIN32
-#define HELIOS_BREAK() Logger::ShutDown(); __debugbreak();
+#define HELIOS_BREAK() Logger::Shutdown(); __debugbreak();
 #elif __APPLE__
 #define HELIOS_BREAK __builtin_debugtrap();
 #else

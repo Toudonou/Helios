@@ -67,7 +67,7 @@ namespace helios {
         memcpy(s_lastFrameMouseButtonKeys, s_frameMouseButtonKeys, HELIOS_MAX_MOUSE_BUTTONS);
     }
 
-    void Input::ShutDown() {
+    void Input::Shutdown() {
         if (!s_init) {
             HELIOS_WARN("Trying to shutdown a non initialized input system");
             return;

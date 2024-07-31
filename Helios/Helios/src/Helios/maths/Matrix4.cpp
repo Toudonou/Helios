@@ -102,13 +102,13 @@ namespace helios {
         return result;
     }
 
-    real_t &Matrix4::operator()(const int i, int j) {
+    real_t &Matrix4::operator()(const int i, const int j) {
         HELIOS_ASSERT_MSG(i >= 0 && i < 4, " i is out of bounds");
         HELIOS_ASSERT_MSG(j >= 0 && j < 4, " j is out of bounds");
         return elements[i + 4 * j];
     }
 
-    const real_t &Matrix4::operator()(const int i, int j) const {
+    const real_t &Matrix4::operator()(const int i, const int j) const {
         HELIOS_ASSERT_MSG(i >= 0 && i < 4, " i is out of bounds");
         HELIOS_ASSERT_MSG(j >= 0 && j < 4, " j is out of bounds");
         return elements[i + 4 * j];

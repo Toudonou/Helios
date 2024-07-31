@@ -64,7 +64,7 @@ namespace helios {
         glfwSwapBuffers(m_window);
     }
 
-    void Window::ShutDown() {
+    void Window::Shutdown() {
         if (!m_init) {
             HELIOS_WARN("Trying to shutdown a non initialized window");
             return;

@@ -5,7 +5,7 @@
 #ifndef RENDERER2D_H
 #define RENDERER2D_H
 
-#include "Helios/2D/Rectangle2D.h"
+#include "Helios/2D/shape/Rectangle2D.h"
 #include "Helios/core/defines.h"
 #include "Helios/core/Window.h"
 #include "Helios/maths/maths.h"

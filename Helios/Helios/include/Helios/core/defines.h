@@ -12,6 +12,7 @@
 #include <chrono>
 #include <fstream>
 #include <cmath>
+#include <unordered_set>
 
 // thrid-party libraries
 #include <glad/glad.h>

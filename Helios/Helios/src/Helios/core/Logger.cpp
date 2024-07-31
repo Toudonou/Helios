@@ -43,10 +43,10 @@ namespace helios {
         tempBuffer << finalMessage.str(); // Store the message in the temporary buffer
     }
 
-    void Logger::ShutDown() {
+    void Logger::Shutdown() {
         s_loggingFile << tempBuffer.str();
         s_loggingFile.close();
-        std::cout << "Logger shut down\n";
+        std::cout << "Logger shutdown\n";
     }
 
     std::string Logger::LogLevelToString(const LogLevel level) {

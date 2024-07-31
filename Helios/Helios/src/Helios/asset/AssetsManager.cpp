@@ -3,13 +3,13 @@
 //
 
 #include "Helios/core/log.h"
-#include "Helios/asset/AssetManager.h"
+#include "Helios/asset/AssetsManager.h"
 
 namespace helios {
-    bool AssetManager::s_init = false;
-    std::vector<std::shared_ptr<Asset> > AssetManager::s_assets;
+    bool AssetsManager::s_init = false;
+    std::vector<std::shared_ptr<Asset> > AssetsManager::s_assets;
 
-    void AssetManager::Init() {
+    void AssetsManager::Init() {
         if (s_init) {
             HELIOS_WARN("Trying to initialize Asset manager twice");
             return;
@@ -19,7 +19,7 @@ namespace helios {
         HELIOS_INFO("Asset manager initialized successfully");
     }
 
-    void AssetManager::Shutdown() {
+    void AssetsManager::Shutdown() {
         if (!s_init) {
             HELIOS_WARN("Trying to shutdown a non initialized Asset manager");
             return;
