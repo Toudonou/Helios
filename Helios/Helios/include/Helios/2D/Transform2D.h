@@ -20,6 +20,8 @@ namespace helios {
 
         Transform2D();
 
+        Transform2D(const Vector2 &position, const Vector2 &scale, real_t rotation);
+
         [[nodiscard]] Matrix4 GetTransformMatrix() const;
 
         static Matrix4 Translate(const Vector2 &vector);

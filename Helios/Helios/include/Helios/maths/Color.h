@@ -9,12 +9,19 @@
 
 namespace helios {
     struct HELIOS_API Color {
-        GLuint r;
-        GLuint g;
-        GLuint b;
-        GLuint a;
+        GLfloat r;
+        GLfloat g;
+        GLfloat b;
+        GLfloat a;
 
-        Color(const GLuint r, const GLuint g, const GLuint b, const GLuint a) : r(r), g(g), b(b), a(a) {
+        Color() : r(1), g(1), b(1), a(1) {
+        }
+
+        Color(const GLfloat r, const GLfloat g, const GLfloat b, const GLfloat a) : r(r), g(g), b(b), a(a) {
+            this->r = std::clamp(r, 0.0f, 1.0f);
+            this->g = std::clamp(g, 0.0f, 1.0f);
+            this->b = std::clamp(b, 0.0f, 1.0f);
+            this->a = std::clamp(a, 0.0f, 1.0f);
         }
     };
 }

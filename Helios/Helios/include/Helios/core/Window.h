@@ -39,6 +39,9 @@ namespace helios {
         // To get the window
         [[nodiscard]] GLFWwindow *GetWindow() const { return m_window; }
 
+        // To get the application specifications
+        [[nodiscard]] ApplicationSpecifications GetSpecifications() const { return m_specifications; }
+
     private:
         // To store the instance of the window
         static Window *s_instance;

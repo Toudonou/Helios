@@ -8,6 +8,7 @@
 
 namespace helios {
     bool Input::s_init = false;
+    Window *Input::s_window = nullptr;
     bool Input::s_frameKeys[HELIOS_MAX_KEYS];
     bool Input::s_lastFrameKeys[HELIOS_MAX_KEYS];
     bool Input::s_frameMouseButtonKeys[HELIOS_MAX_MOUSE_BUTTONS];
@@ -29,11 +30,14 @@ namespace helios {
         Input::s_mouseY = static_cast<float>(ypos);
     }
 
-    void Input::Init(const Window &window) {
+    void Input::Init(Window &window) {
         if (s_init) {
             HELIOS_WARN("Trying to initialize the input system twice");
             return;
         }
+
+        s_window = &window;
+        HELIOS_ASSERT_MSG(s_window, "The window should not be null");
 
         // Setting up the callbacks
         glfwSetKeyCallback(window.GetWindow(), key_callback);
@@ -64,6 +68,11 @@ namespace helios {
     }
 
     void Input::ShutDown() {
+        if (!s_init) {
+            HELIOS_WARN("Trying to shutdown a non initialized input system");
+            return;
+        }
+
         memset(s_frameKeys, false, HELIOS_MAX_KEYS);
         memset(s_lastFrameKeys, false, HELIOS_MAX_KEYS);
         memset(s_frameMouseButtonKeys, false, HELIOS_MAX_MOUSE_BUTTONS);

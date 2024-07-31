@@ -17,41 +17,41 @@ namespace helios {
         glDeleteProgram(m_ShaderID);
     }
 
-    void Shader::setUniform1i(const std::string &name, const int value) const {
+    void Shader::SetUniform1i(const std::string &name, const int value) const {
         glUniform1i(getUniformLocation(name), value);
     }
 
-    void Shader::setUniform1iv(const std::string &name, const int *value, const int count) const {
+    void Shader::SetUniform1iv(const std::string &name, const int *value, const int count) const {
         glUniform1iv(getUniformLocation(name), count, value);
     }
 
-    void Shader::setUniform1f(const std::string &name, const float value) const {
+    void Shader::SetUniform1f(const std::string &name, const float value) const {
         glUniform1f(getUniformLocation(name), value);
     }
 
-    void Shader::setUniform2f(const std::string &name, const Vector2 &vector) const {
+    void Shader::SetUniform2f(const std::string &name, const Vector2 &vector) const {
         glUniform2f(getUniformLocation(name), static_cast<GLfloat>(vector.x), static_cast<GLfloat>(vector.y));
     }
 
-    void Shader::setUniform3f(const std::string &name, const Vector3 &vector) const {
+    void Shader::SetUniform3f(const std::string &name, const Vector3 &vector) const {
         glUniform3f(getUniformLocation(name), static_cast<GLfloat>(vector.x), static_cast<GLfloat>(vector.y),
                     static_cast<GLfloat>(vector.z));
     }
 
-    void Shader::setUniform4f(const std::string &name, const Vector4 &vector) const {
+    void Shader::SetUniform4f(const std::string &name, const Vector4 &vector) const {
         glUniform4f(getUniformLocation(name), static_cast<GLfloat>(vector.x), static_cast<GLfloat>(vector.y),
                     static_cast<GLfloat>(vector.z), static_cast<GLfloat>(vector.w));
     }
 
-    void Shader::setUniformMat4(const std::string &name, const Matrix4 &matrix) const {
+    void Shader::SetUniformMat4(const std::string &name, const Matrix4 &matrix) const {
         glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, matrix.elements);
     }
 
-    void Shader::enable() const {
+    void Shader::Enable() const {
         glUseProgram(m_ShaderID);
     }
 
-    void Shader::disable() const {
+    void Shader::Disable() const {
         glUseProgram(0);
     }
 

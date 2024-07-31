@@ -10,11 +10,14 @@
 namespace helios {
     struct HELIOS_API Size {
         // Width
-        GLuint w;
+        GLfloat w;
         // Height
-        GLuint h;
+        GLfloat h;
 
-        Size(const GLuint w, const GLuint h) : w(w), h(h) {
+        Size() : w(0), h(0) {
+        }
+
+        Size(const GLfloat width, const GLfloat height) : w(width), h(height) {
         }
     };
 }

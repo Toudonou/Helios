@@ -15,23 +15,23 @@ namespace helios {
 
         ~Shader();
 
-        void setUniform1i(const std::string &name, int value) const;
+        void SetUniform1i(const std::string &name, int value) const;
 
-        void setUniform1iv(const std::string &name, const int *value, int count) const;
+        void SetUniform1iv(const std::string &name, const int *value, int count) const;
 
-        void setUniform1f(const std::string &name, float value) const;
+        void SetUniform1f(const std::string &name, float value) const;
 
-        void setUniform2f(const std::string &name, const Vector2 &vector) const;
+        void SetUniform2f(const std::string &name, const Vector2 &vector) const;
 
-        void setUniform3f(const std::string &name, const Vector3 &vector) const;
+        void SetUniform3f(const std::string &name, const Vector3 &vector) const;
 
-        void setUniform4f(const std::string &name, const Vector4 &vector) const;
+        void SetUniform4f(const std::string &name, const Vector4 &vector) const;
 
-        void setUniformMat4(const std::string &name, const Matrix4 &matrix) const;
+        void SetUniformMat4(const std::string &name, const Matrix4 &matrix) const;
 
-        void enable() const;
+        void Enable() const;
 
-        void disable() const;
+        void Disable() const;
 
     private:
         GLuint m_ShaderID;

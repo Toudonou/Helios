@@ -2,13 +2,18 @@
 // Created by Toudonou on 29/07/2024.
 //
 
-#include "Helios/maths/Transform2D.h"
+#include "Helios/2D/Transform2D.h"
 
 namespace helios {
     Transform2D::Transform2D() {
         position = Vector2::ZERO;
         scale = Vector2::ONE;
         rotation = 0;
+    }
+
+    Transform2D::Transform2D(const Vector2 &position, const Vector2 &scale, real_t rotation) : position(position),
+        scale(scale),
+        rotation(rotation) {
     }
 
     Matrix4 Transform2D::GetTransformMatrix() const {
