@@ -5,18 +5,17 @@
 #ifndef RENDERER2D_H
 #define RENDERER2D_H
 
-#include "Helios/2D/shape/Rectangle2D.h"
 #include "Helios/core/defines.h"
 #include "Helios/core/Window.h"
-#include "Helios/maths/maths.h"
 #include "Helios/shader/Shader.h"
+#include "Helios/2D/shape/Rectangle2D.h"
 
 namespace helios {
     struct HELIOS_API Vertex {
         Vector3 position;
         Vector2 uv;
         Color color;
-        real_t texID;
+        real_t texIndex;
     };
 
     class HELIOS_API Renderer2D {
@@ -33,8 +32,8 @@ namespace helios {
         // End the drawing process
         static void End();
 
-        // Submit a vertex to the renderer
-        static void Submit(const Rectangle2D &rectangle);
+        // Submit vertices to the renderer
+        static void Submit(const std::vector<Vertex>& vertices);
 
         // Flush the renderer
         static void Flush();

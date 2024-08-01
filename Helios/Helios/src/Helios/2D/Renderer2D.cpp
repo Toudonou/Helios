@@ -4,7 +4,7 @@
 
 #include "Helios/core/log.h"
 #include "Helios/2D/Renderer2D.h"
-
+#include "Helios/asset/AssetsManager.h"
 #include "Helios/input/Input.h"
 
 namespace helios {
@@ -32,6 +32,17 @@ namespace helios {
 
         s_shader = std::make_shared<Shader>("../Helios/include/Helios/shader/basic.vert",
                                             "../Helios/include/Helios/shader/basic.frag");
+        // Enable the shader
+        s_shader->Enable();
+        s_shader->SetUniformMat4("vw_matrix",
+                                 Matrix4::Orthographic(0, s_window->GetSpecifications().width, 0,
+                                                       s_window->GetSpecifications().height, -10, 10));
+        const GLint textures[32] = {
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
+            29,
+            30, 31
+        };
+        s_shader->SetUniform1iv("textures", textures, 32);
 
         // VBO
         glGenBuffers(1, &s_VBO);
@@ -57,7 +68,7 @@ namespace helios {
 
         glEnableVertexAttribArray(3); // texID
         glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex),
-                              reinterpret_cast<void *>(offsetof(Vertex, Vertex::texID)));
+                              reinterpret_cast<void *>(offsetof(Vertex, Vertex::texIndex)));
 
         // IBO
         std::vector<GLuint> indices;
@@ -118,6 +129,11 @@ namespace helios {
             return;
         }
 
+        // Important for having good image rendering
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glShadeModel(GL_SMOOTH);
+
         // Enable the depth test to be able z coordinate as z-index
         glEnable(GL_DEPTH_TEST);
 
@@ -126,15 +142,15 @@ namespace helios {
         glBindBuffer(GL_ARRAY_BUFFER, s_VBO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_IBO);
 
-        // Enable the shader
-        s_shader->Enable();
-        s_shader->SetUniformMat4("vw_matrix",
-                                 Matrix4::Orthographic(0, s_window->GetSpecifications().width, 0,
-                                                       s_window->GetSpecifications().height, -10, 10));
         // s_shader->SetUniform4f("light_pos", Vector4(Vector2(Input::GetMouseX(),
         //                                                     static_cast<real_t>(s_window->GetSpecifications().height) -
         //                                                     Input
         //                                                     ::GetMouseY()), 0.0f, 0.0f));
+
+        for (const auto texture: AssetsManager::GetTextures()) {
+            glActiveTexture(GL_TEXTURE0 + texture->GetTextureIndex());
+            glBindTexture(GL_TEXTURE_2D, texture->GetTextureValue());
+        }
     }
 
     void Renderer2D::End() {
@@ -147,66 +163,33 @@ namespace helios {
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        glBindTexture(GL_TEXTURE_2D, 0);
 
         // Disable the shader
-        s_shader->Disable();
+        // s_shader->Disable();
 
         // Clear the vertices
         s_vertices.clear();
     }
 
-    void Renderer2D::Submit(const Rectangle2D &rectangle) {
+    void Renderer2D::Submit(const std::vector<Vertex> &vertices) {
         // 0    2
         // 1    3
         // 0 1 2; 1 2 3
         if (!s_init) {
-            HELIOS_WARN("Trying to submit a vertex to a non initialized renderer");
+            HELIOS_WARN("Trying to submit vertices to a non initialized renderer");
             return;
         }
 
-        if(s_vertices.size() > s_maxRenderable * NUM_SPRITE_VERTICES) {
+        if (s_vertices.size() > s_maxRenderable * NUM_SPRITE_VERTICES) {
             // TODO : This case should be handeled in a better way
             HELIOS_INFO("Maximum number of renderable reached : %d, flushing before continue", s_maxRenderable);
             Flush();
         }
 
-        if (s_window) {
-            // To avoid IDE warning
-            s_vertices.push_back(Vertex{
-                .position = Vector3(rectangle.transform.position.x,
-                                    static_cast<real_t>(s_window->GetSpecifications().height) - rectangle.transform.
-                                    position.y, rectangle.zIndex),
-                .uv = Vector2(0.0f, 1.0f),
-                .color = rectangle.color,
-                .texID = -1.0f
-            }); // 0
-
-            s_vertices.push_back(Vertex{
-                .position = Vector3(rectangle.transform.position.x,
-                                    static_cast<real_t>(s_window->GetSpecifications().height) - rectangle.transform.
-                                    position.y - rectangle.size.h, rectangle.zIndex),
-                .uv = Vector2(0.0f, 0.0f),
-                .color = rectangle.color,
-                .texID = -1.0f
-            }); // 1
-
-            s_vertices.push_back(Vertex{
-                .position = Vector3(rectangle.transform.position.x + rectangle.size.w,
-                                    static_cast<real_t>(s_window->GetSpecifications().height) - rectangle.transform.
-                                    position.y, rectangle.zIndex),
-                .uv = Vector2(1.0f, 1.0f),
-                .color = rectangle.color,
-                .texID = -1.0f
-            }); // 2
-
-            s_vertices.push_back(Vertex{
-                .position = Vector3(rectangle.transform.position.x + rectangle.size.w,
-                                    static_cast<real_t>(s_window->GetSpecifications().height) - rectangle.transform.
-                                    position.y - rectangle.size.h, rectangle.zIndex),
-                .uv = Vector2(1.0f, 0.0f),
-                .color = rectangle.color,
-                .texID = -1.0f
-            }); // 3
+        for (auto vertex: vertices) {
+            vertex.position.y = static_cast<real_t>(s_window->GetSpecifications().height) - vertex.position.y;
+            s_vertices.push_back(vertex);
         }
     }
 
