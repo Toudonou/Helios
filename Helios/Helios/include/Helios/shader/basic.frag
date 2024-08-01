@@ -7,14 +7,14 @@ uniform vec4 light_pos;
 in vec4 pos;
 in vec2 texCoord;
 in vec4 colour;
-in float tex_id;
+in float tex_index;
 
 uniform sampler2D textures[32];
 
 void main() {
     float intensity = 30 / length(pos.xy - light_pos.xy);
     color = vec4(1.0, 1.0, 1.0, 1.0);
-    switch (int(tex_id)) {
+    switch (int(tex_index)) {
         case -1: color *= colour; break;
         case 0: color *= texture(textures[0], texCoord) * colour; break;
         case 1: color *= texture(textures[1], texCoord) * colour; break;
@@ -49,4 +49,7 @@ void main() {
         case 30: color *= texture(textures[30], texCoord) * colour; break;
         case 31: color *= texture(textures[31], texCoord) * colour; break;
     }
+
+    // To make the texture transparent
+    if (color.a < 0.1) discard;
 }
