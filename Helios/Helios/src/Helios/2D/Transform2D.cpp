@@ -42,8 +42,8 @@ namespace helios {
         auto result = Matrix4::Identity();
 
         const real_t r = toRadian(angle);
-        const real_t s = sinf(r);
-        const real_t c = cosf(r);
+        const real_t s = hsin(r);
+        const real_t c = hcos(r);
 
         result(0, 0) = c;
         result(0, 1) = -s;

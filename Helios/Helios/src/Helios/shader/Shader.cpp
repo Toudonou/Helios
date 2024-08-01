@@ -49,10 +49,12 @@ namespace helios {
 
     void Shader::Enable() const {
         glUseProgram(m_ShaderID);
+        HELIOS_INFO("Shader enabled");
     }
 
     void Shader::Disable() const {
         glUseProgram(0);
+        HELIOS_INFO("Shader disabled");
     }
 
     GLuint Shader::load() const {

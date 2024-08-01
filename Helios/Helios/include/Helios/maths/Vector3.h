@@ -33,13 +33,13 @@ namespace helios {
         ~Vector3() = default;
 
         // Length of the Vector3
-        [[nodiscard]] real_t length() const;
+        [[nodiscard]] real_t Length() const;
 
         // Square length of the Vector3
-        [[nodiscard]] real_t squareLength() const;
+        [[nodiscard]] real_t SquareLength() const;
 
         // Normalized Vector3
-        [[nodiscard]] Vector3 normalized() const;
+        [[nodiscard]] Vector3 Normalized() const;
 
         Vector3 operator+(const Vector3 &other) const;
 

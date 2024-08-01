@@ -16,7 +16,7 @@ namespace helios {
         virtual ~Asset() = default;
 
         // Load ressource from a file
-        virtual void LoadFromFile(const std::string &path) = 0;
+        virtual void LoadFromFile(const std::string &filePath) = 0;
 
         // Get the path of the ressource
         [[nodiscard]] virtual const std::string &GetPath() const = 0;

@@ -34,7 +34,7 @@ namespace helios {
         [[nodiscard]] bool IsClosed() const { return glfwWindowShouldClose(m_window); }
 
         // To close the window
-        void Closed() const { glfwSetWindowShouldClose(m_window, true); }
+        void Close() const { glfwSetWindowShouldClose(m_window, true); }
 
         // To get the window
         [[nodiscard]] GLFWwindow *GetWindow() const { return m_window; }

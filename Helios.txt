@@ -1,19 +1,19 @@
 --------------------------------- Helios ---------------------------------
 
 	- Opengl (or Vulkan)
-	- Number of thraed = 2 : Main thread + Render thread
+	- Number of thread = 2 : Main thread + Render thread
 
 	- Core
 		- Engine											Building
 		- Window (ApplicationSpecifications)				OK
 		- Logger											OK
 		- FileManager
-		- RessourceManager (Runtime Resource Management)	OK
+		- ResourceManager (Runtime Resource Management)	OK
 		- File Serialization
-		- Event System Signal Emiter (Collision Shape, UI)
+		- Event System Signal Emitter (Collision Shape, UI)
 		- Time, Clock
 
-	- Scripting System (Lua)
+	- Scripting System (Lua or C#)
 
 	- Maths													OK
 		- Vector2											OK
@@ -25,24 +25,39 @@
 	- Inputs												OK
 		- Input
 
-	- Renderer
-		- BatchRenderer
-		- TextureManager
-		- Layer ?????
+	- Shader												OK	
 
-	- FontManager
+	- Resource Managment
+		- Resource
+		- ResourceManager
+		- Texture
+		- Font
+		- Audio
+
+	- BatchRenderer											Building
+		- BatchRenderer										OK
+		- TextureManager
+		- Texture Atlas
+		- Layer ?????
 
 	- Scene Management
 		- SceneClass
 		- SceneStateMachine
 
-	- Node
+	
+	- Shape
+		- Rectangle2D										OK								
+		- Circle2D
+		- Triangle2D
+		- Polygone2D ?????????
+
+	- Node 													Building
 		- Camera2D
 
-		- Games Objects 
-			- Sprite2D
+		- Games Objects	
+			- Sprite2D 										Building
 			- AnimatedSprite2D
-			- Particules2D
+			- Particles2D
 			- TileMap
 			- ParallaxLayer
 
@@ -53,27 +68,28 @@
 					- RigidBody2D
 					- StaticBody2D (floor, wall)
 
-		- Shape
-			- Rectangle2D
-			- Circle2D
-			- Triangle2D
-			- Polygone2D ?????????
-
 			- Physics 
 				- CollisionShape2D			
 				- RayCast2D
 
 		- Audio (SoLound, Irrklang, OpenAL)
 			- AudioStream
-			- LocalAudioStream
+			- SpaceAudioStream
+			- Effects
 
 		- Light
 			- Point light	
 			- Directional light
 			- Ambient light
-			- Spot light
+			- Spotlight
 
 		- UI
+			- Layout System : place things on top-left far example
+			- HUD
+			- Menu screen
+			- Text
+				- FontManager	
+					- SDFont : https://github.com/ShoYamanishi/SDFont
 			- Button
 			- CheckBox
-			- ToogleButton
+			- ToggleButton

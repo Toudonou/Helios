@@ -24,20 +24,20 @@ namespace helios {
         this->z = other.z;
     }
 
-    real_t Vector3::length() const {
-        return std::sqrt(squareLength());
+    real_t Vector3::Length() const {
+        return std::sqrt(SquareLength());
     }
 
-    real_t Vector3::squareLength() const {
+    real_t Vector3::SquareLength() const {
         return x * x + y * y + z * z;
     }
 
-    Vector3 Vector3::normalized() const {
-        if (squareLength() == 0) {
+    Vector3 Vector3::Normalized() const {
+        if (SquareLength() == 0) {
             HELIOS_WARN("Trying to normalize a null Vector3");
             return {0, 0, 0};
         }
-        return *this * (1 / length());
+        return *this * (1 / Length());
     }
 
     Vector3 Vector3::operator+(const Vector3 &other) const {

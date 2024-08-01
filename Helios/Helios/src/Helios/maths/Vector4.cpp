@@ -29,20 +29,20 @@ namespace helios {
         this->w = other.w;
     }
 
-    real_t Vector4::length() const {
-        return std::sqrt(squareLength());
+    real_t Vector4::Length() const {
+        return std::sqrt(SquareLength());
     }
 
-    real_t Vector4::squareLength() const {
+    real_t Vector4::SquareLength() const {
         return x * x + y * y + z * z + w * w;
     }
 
-    Vector4 Vector4::normalized() const {
-        if (squareLength() == 0) {
+    Vector4 Vector4::Normalized() const {
+        if (SquareLength() == 0) {
             HELIOS_WARN("Trying to normalize a null Vector4");
             return {0, 0, 0, 0};
         }
-        return *this * (1 / length());
+        return *this * (1 / Length());
     }
 
     Vector4 Vector4::operator+(const Vector4 &other) const {

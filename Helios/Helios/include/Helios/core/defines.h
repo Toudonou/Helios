@@ -33,6 +33,14 @@ namespace helios {
         constexpr real_t pi_over_180 = M_PI / 180; // For optimization
         return degree * pi_over_180;
     }
+
+    inline real_t hsin(const real_t angle) {
+        return sinf(angle);
+    }
+
+    inline real_t hcos(const real_t angle) {
+        return cosf(angle);
+    }
 }
 
 #ifdef _WIN32
