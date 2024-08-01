@@ -23,6 +23,24 @@ namespace helios {
             this->b = std::clamp(b, 0.0f, 1.0f);
             this->a = std::clamp(a, 0.0f, 1.0f);
         }
+
+        // Constants for common colors
+        static const Color TRANSPARENT;
+        static const Color WHITE;
+        static const Color BLACK;
+        static const Color RED;
+        static const Color GREEN;
+        static const Color BLUE;
+        static const Color YELLOW;
+        static const Color MAGENTA;
+        static const Color CYAN;
+        static const Color ORANGE;
+        static const Color PURPLE;
+        static const Color PINK;
+        static const Color BROWN;
+        static const Color GREY;
+        static const Color LIGHT_GREY;
+        static const Color DARK_GREY;
     };
 }
 
