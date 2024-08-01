@@ -6,7 +6,8 @@
 #define  ASSETMANAGER_H
 
 #include "Helios/core/defines.h"
-#include "Helios/asset/Asset.h"
+#include "Helios/core/log.h"
+#include "Helios/asset/Texture.h"
 
 namespace helios {
     class HELIOS_API AssetsManager {
@@ -18,26 +19,10 @@ namespace helios {
         static void Shutdown();
 
         // Load a resource from a file
-        template<typename T>
-        static std::shared_ptr<T> GetAsset(const std::string &path) {
-            // Will return the first resource that has the same path
-            auto iterator = std::find_if(s_assets.begin(), s_assets.end(),
-                                         [&path](const std::shared_ptr<Asset> &resource) {
-                                             return resource->GetPath() == path;
-                                         });
+        static Texture *GetTexture(const std::string &filePath);
 
-            // If the resource is found
-            if (iterator != s_assets.end()) {
-                // Return the derivative of the ressource : the real resource
-                return std::dynamic_pointer_cast<T>(*iterator);
-            }
-
-            // If the resource is not found
-            auto resource = std::make_shared<Asset>();
-            resource->LoadFromFile(path);
-            s_assets.push_back(resource);
-            return resource;
-        }
+        // Get all the textures
+        [[nodiscard]] static const std::vector<Texture *> &GetTextures() { return s_textures; }
 
         // TODO : Add a function to release a resource
 
@@ -46,7 +31,8 @@ namespace helios {
         static bool s_init;
 
         // To store all the ressources
-        static std::vector<std::shared_ptr<Asset> > s_assets;
+        // TODO : Think about using smart pointers and map instead of vector
+        static std::vector<Texture *> s_textures;
 
         AssetsManager() = default;
 
