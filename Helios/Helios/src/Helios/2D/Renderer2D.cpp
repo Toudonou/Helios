@@ -39,8 +39,7 @@ namespace helios {
                                                        s_window->GetSpecifications().height, -10, 10));
         const GLint textures[32] = {
             0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
-            29,
-            30, 31
+            29, 30, 31
         };
         s_shader->SetUniform1iv("textures", textures, 32);
 
@@ -116,6 +115,7 @@ namespace helios {
         s_VBO = 0;
         s_IBO = 0;
         s_maxRenderable = 0;
+        s_shader->Disable();
         s_shader.reset();
         s_vertices.clear();
 
@@ -210,5 +210,42 @@ namespace helios {
         glDrawElements(GL_TRIANGLES, s_vertices.size() * indicesFactor, GL_UNSIGNED_INT, nullptr);
 
         End();
+    }
+
+    // Primitives rendering
+    void Renderer2D::DrawQuad(const real_t x, const real_t y, const real_t width, const real_t height,
+                              const Color &color) {
+        if (!s_init) {
+            HELIOS_WARN("Trying to draw a quad with a non initialized renderer");
+            return;
+        }
+
+        s_vertices.push_back(Vertex{
+            .position = Vector3(x, static_cast<real_t>(s_window->GetSpecifications().height) - y, 0),
+            .uv = Vector2::ZERO,
+            .color = color,
+            .texIndex = -1.0f
+        }); // 0
+
+        s_vertices.push_back(Vertex{
+            .position = Vector3(x, static_cast<real_t>(s_window->GetSpecifications().height) - y - height, 0),
+            .uv = Vector2::ZERO,
+            .color = color,
+            .texIndex = -1.0f
+        }); // 1
+
+        s_vertices.push_back(Vertex{
+            .position = Vector3(x + width, static_cast<real_t>(s_window->GetSpecifications().height) - y, 0),
+            .uv = Vector2::ZERO,
+            .color = color,
+            .texIndex = -1.0f
+        }); // 2
+
+        s_vertices.push_back(Vertex{
+            .position = Vector3(x + width, static_cast<real_t>(s_window->GetSpecifications().height) - y - height, 0),
+            .uv = Vector2::ZERO,
+            .color = color,
+            .texIndex = -1.0f
+        }); // 3
     }
 } // helios

@@ -8,7 +8,6 @@
 #include "Helios/core/defines.h"
 #include "Helios/core/Window.h"
 #include "Helios/shader/Shader.h"
-#include "Helios/2D/shape/Rectangle2D.h"
 
 namespace helios {
     struct HELIOS_API Vertex {
@@ -37,6 +36,9 @@ namespace helios {
 
         // Flush the renderer
         static void Flush();
+
+        // Primitives rendering
+        static void DrawQuad(real_t x, real_t y, real_t width, real_t height, const Color &color);
 
     private:
         static bool s_init;
