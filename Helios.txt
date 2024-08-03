@@ -56,7 +56,7 @@
 
 		- Games Objects	
 			- Sprite2D 										Building
-			- AnimatedSprite2D
+			- AnimatedSprite2D (Texture Atlas)
 			- Particles2D
 			- TileMap
 			- ParallaxLayer

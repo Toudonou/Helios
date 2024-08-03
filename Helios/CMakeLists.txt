@@ -24,6 +24,34 @@ add_executable(${PROJECT_NAME}
         Helios/include/Helios/core/Window.h
         Helios/src/Helios/input/Input.cpp
         Helios/include/Helios/input/Input.h
+        Helios/src/Helios/maths/Vector2.cpp
+        Helios/include/Helios/maths/Vector2.h
+        Helios/include/Helios/maths/maths.h
+        Helios/src/Helios/maths/Vector3.cpp
+        Helios/include/Helios/maths/Vector3.h
+        Helios/src/Helios/maths/Vector4.cpp
+        Helios/include/Helios/maths/Vector4.h
+        Helios/src/Helios/maths/Matrix4.cpp
+        Helios/include/Helios/maths/Matrix4.h
+        Helios/src/Helios/2D/Transform2D.cpp
+        Helios/include/Helios/2D/Transform2D.h
+        Helios/include/Helios/asset/Asset.h
+        Helios/src/Helios/asset/AssetsManager.cpp
+        Helios/include/Helios/asset/AssetsManager.h
+        Helios/src/Helios/2D/Renderer2D.cpp
+        Helios/include/Helios/2D/Renderer2D.h
+        Helios/src/Helios/shader/Shader.cpp
+        Helios/include/Helios/shader/Shader.h
+        Helios/src/Helios/utils/FileUtils.cpp
+        Helios/include/Helios/utils/FileUtils.h
+        Helios/include/Helios/maths/Color.h
+        Helios/include/Helios/maths/Size.h
+        Helios/include/Helios/2D/node/Node2D.h
+        Helios/src/Helios/2D/node/Sprite2D.cpp
+        Helios/include/Helios/2D/node/Sprite2D.h
+        Helios/src/Helios/asset/Texture.cpp
+        Helios/include/Helios/asset/Texture.h
+        Helios/src/Helios/maths/Color.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} glfw3 opengl32)

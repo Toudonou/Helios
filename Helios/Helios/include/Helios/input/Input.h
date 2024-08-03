@@ -10,6 +10,7 @@
 
 namespace helios {
     class HELIOS_API Input {
+        // TODO : Add my key enum class
     public:
         // Initialize the input system
         static void Init(Window &window);
