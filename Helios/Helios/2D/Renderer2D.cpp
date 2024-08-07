@@ -15,7 +15,7 @@ namespace helios {
     GLuint Renderer2D::s_maxRenderable = 0;
     std::vector<Vertex> Renderer2D::s_vertices;
     Window *Renderer2D::s_window = nullptr;
-    std::shared_ptr<Shader> Renderer2D::s_shader;
+    std::unique_ptr<Shader> Renderer2D::s_shader;
 
     constexpr GLubyte NUM_SPRITE_VERTICES = 4;
     constexpr GLubyte NUM_SPRITE_INDICES = 6;
@@ -30,8 +30,8 @@ namespace helios {
         s_window = &window;
         HELIOS_ASSERT_MSG(s_window, "The window should not be null");
 
-        s_shader = std::make_shared<Shader>("../Helios/include/Helios/shader/basic.vert",
-                                            "../Helios/include/Helios/shader/basic.frag");
+        s_shader = std::make_unique<Shader>("../../Helios/Helios/shader/vert.glsl",
+                                            "../../Helios/Helios/shader/frag.glsl");
         // Enable the shader
         s_shader->Enable();
         s_shader->SetUniformMat4("vw_matrix",

@@ -51,7 +51,7 @@ namespace helios {
 
         static Window *s_window;
 
-        static std::shared_ptr<Shader> s_shader;
+        static std::unique_ptr<Shader> s_shader;
 
         Renderer2D() = default;
 

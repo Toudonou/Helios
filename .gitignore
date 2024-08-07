@@ -1,3 +1,4 @@
 /.idea
-/Helios/cmake-build-debug/
+/cmake-build-debug/
 /Helios/.idea/
+/Helios/.vs

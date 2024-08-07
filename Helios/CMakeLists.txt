@@ -4,85 +4,63 @@ project(Helios)
 set(CMAKE_CXX_STANDARD 20)
 
 # Include the third-party libraries
-include_directories(third-party/include)
+include_directories(third-party/include/)
 # Link the third-party libraries
 link_directories(third-party/lib)
 
-# Include the engine libraries
-include_directories(Helios/include/)
-
-add_executable(${PROJECT_NAME}
+add_library(Helios SHARED
         third-party/src/glad.c
-        main.cpp
-        Helios/include/Helios/core/defines.h
-        Helios/include/Helios/core/log.h
-        Helios/src/Helios/core/Engine.cpp
-        Helios/include/Helios/core/Engine.h
-        Helios/src/Helios/core/Logger.cpp
-        Helios/include/Helios/core/Logger.h
-        Helios/src/Helios/core/Window.cpp
-        Helios/include/Helios/core/Window.h
-        Helios/src/Helios/input/Input.cpp
-        Helios/include/Helios/input/Input.h
-        Helios/src/Helios/maths/Vector2.cpp
-        Helios/include/Helios/maths/Vector2.h
-        Helios/include/Helios/maths/maths.h
-        Helios/src/Helios/maths/Vector3.cpp
-        Helios/include/Helios/maths/Vector3.h
-        Helios/src/Helios/maths/Vector4.cpp
-        Helios/include/Helios/maths/Vector4.h
-        Helios/src/Helios/maths/Matrix4.cpp
-        Helios/include/Helios/maths/Matrix4.h
-        Helios/src/Helios/2D/Transform2D.cpp
-        Helios/include/Helios/2D/Transform2D.h
-        Helios/include/Helios/asset/Asset.h
-        Helios/src/Helios/asset/AssetsManager.cpp
-        Helios/include/Helios/asset/AssetsManager.h
-        Helios/src/Helios/2D/Renderer2D.cpp
-        Helios/include/Helios/2D/Renderer2D.h
-        Helios/src/Helios/shader/Shader.cpp
-        Helios/include/Helios/shader/Shader.h
-        Helios/src/Helios/utils/FileUtils.cpp
-        Helios/include/Helios/utils/FileUtils.h
-        Helios/include/Helios/maths/Color.h
-        Helios/include/Helios/maths/Size.h
-        Helios/include/Helios/2D/node/Node2D.h
-        Helios/src/Helios/2D/node/Sprite2D.cpp
-        Helios/include/Helios/2D/node/Sprite2D.h
-        Helios/src/Helios/asset/Texture.cpp
-        Helios/include/Helios/asset/Texture.h
-        Helios/src/Helios/maths/Color.cpp
+        Helios/core/defines.h
+        Helios/core/log.h
+        Helios/core/Engine.cpp
+        Helios/core/Engine.h
+        Helios/core/Logger.cpp
+        Helios/core/Logger.h
+        Helios/core/Window.cpp
+        Helios/core/Window.h
+        Helios/input/Input.cpp
+        Helios/input/Input.h
+        Helios/maths/Vector2.cpp
+        Helios/maths/Vector2.h
+        Helios/maths/maths.h
+        Helios/maths/Vector3.cpp
+        Helios/maths/Vector3.h
+        Helios/maths/Vector4.cpp
+        Helios/maths/Vector4.h
+        Helios/maths/Matrix4.cpp
+        Helios/maths/Matrix4.h
+        Helios/2D/Transform2D.cpp
+        Helios/2D/Transform2D.h
+        Helios/asset/Asset.h
+        Helios/asset/AssetsManager.cpp
+        Helios/asset/AssetsManager.h
+        Helios/2D/Renderer2D.cpp
+        Helios/2D/Renderer2D.h
+        Helios/shader/Shader.cpp
+        Helios/shader/Shader.h
+        Helios/utils/FileUtils.cpp
+        Helios/utils/FileUtils.h
+        Helios/maths/Color.h
+        Helios/maths/Size.h
+        Helios/2D/node/Node2D.h
+        Helios/2D/node/Sprite2D.cpp
+        Helios/2D/node/Sprite2D.h
+        Helios/asset/Texture.cpp
+        Helios/asset/Texture.h
+        Helios/maths/Color.cpp
 )
 
-target_link_libraries(${PROJECT_NAME} glfw3 opengl32)
+target_link_libraries(Helios glfw3 opengl32)
 
-# Set a custom name for the DLL
-#set_target_properties(${PROJECT_NAME} PROPERTIES
-#        OUTPUT_NAME "helios"
-#        PREFIX ""  # This removes the 'lib' prefix on Unix-like systems
-#)
+# This line ensures that the directory containing the Helios.dll source files
+# is added to the include path for both the Helios.dll target and any other
+# targets that link against Helios.dll.
+target_include_directories(Helios PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-#add_custom_command(
-#        TARGET ${PROJECT_NAME}
-#        POST_BUILD
-#        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-#        "E:/Dev/game-engine/Helios/Helios/cmake-build-debug/helios.dll" "E:/Dev/game-engine/Sandbox/cmake-build-debug/"
-#        COMMENT "Copying specified files to destination directory after build"
-#)
-#
-#add_custom_command(
-#        TARGET ${PROJECT_NAME}
-#        POST_BUILD
-#        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-#        "E:/Dev/game-engine/Helios/Helios/cmake-build-debug/helios.dll" "E:/Dev/game-engine/Sandbox/lib/"
-#        COMMENT "Copying specified files to destination directory after build"
-#)
-#
-#add_custom_command(
-#        TARGET ${PROJECT_NAME}
-#        POST_BUILD
-#        COMMAND ${CMAKE_COMMAND} -E copy_directory
-#        "E:/Dev/game-engine/Helios/Helios/include/Helios" "E:/Dev/game-engine/Sandbox/include/"
-#        COMMENT "Copying header files to destination directory after build"
-#)
+# Add custom command to copy DLL after build
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:${PROJECT_NAME}>
+        ${CMAKE_CURRENT_SOURCE_DIR}/../cmake-build-debug/Sandbox/$<TARGET_FILE_NAME:${PROJECT_NAME}>
+)

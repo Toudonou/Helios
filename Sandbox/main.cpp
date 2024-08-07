@@ -1,11 +1,6 @@
-//
-// Created by Toudonou on 21/07/2024.
-//
-
-// For testing purposes
-
 #include "Helios/core/Engine.h"
 #include "Helios/core/log.h"
+
 
 using namespace helios;
 
@@ -14,6 +9,6 @@ int main() {
     Engine::Run();
     Engine::Shutdown();
 
-    std::cin.get();
+    system("pause");
     return 0;
 }

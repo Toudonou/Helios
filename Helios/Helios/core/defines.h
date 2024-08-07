@@ -30,7 +30,7 @@ typedef float real_t;
 
 namespace helios {
     inline real_t toRadian(const real_t degree) {
-        constexpr real_t pi_over_180 = M_PI / 180; // For optimization
+        constexpr real_t pi_over_180 = M_PI / 180;
         return degree * pi_over_180;
     }
 
